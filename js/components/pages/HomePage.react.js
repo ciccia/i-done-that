@@ -23,6 +23,7 @@ class HomePage extends Component {
           <input className="home__input" type="text" onChange={(evt) => { dispatch(asyncChangeOwnerName(evt.target.value)); }} defaultValue="mxstbr" value={ownerName} />
         </label>
         <Link className="btn" to="/readme">Setup</Link>
+        <Link className="btn" to="/doings">Doings</Link>
       </div>
     );
   }
@@ -33,7 +34,7 @@ class HomePage extends Component {
 // Which props do we want to inject, given the global state?
 function select(state) {
   return {
-    data: state
+    data: state.homeReducer
   };
 }
 
