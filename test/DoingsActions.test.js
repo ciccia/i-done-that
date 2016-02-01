@@ -1,7 +1,7 @@
 import expect from 'expect';
 import Immutable from 'immutable';
-import { addDone, markDoneAsDoing, markDoneAsDone } from '../js/actions/DoingsActions';
-import { ADD_DONE, MARK_DONE_AS_DOING, MARK_DONE_AS_DONE } from '../js/constants/DoingsConstants';
+import { addDone, markDoneAsDoing, markDoneAsDone } from '../js/actions/doingsActions';
+import { ADD_DONE, MARK_DONE_AS_DOING, MARK_DONE_AS_DONE } from '../js/constants/doingsConstants';
 
 describe('DoingsActions', () => {
   describe('addDone', () => {
