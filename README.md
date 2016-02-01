@@ -9,6 +9,7 @@
 - [ ] Add filter and sort
 - [ ] Add a basic server with API
 - [ ] Async actions to retrieve data
+- [ ] Demo on cloud (maybe Heroku)
 - [ ] Think more stuff...
 
 ###### Boilerplate
