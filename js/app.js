@@ -44,7 +44,7 @@ openSansObserver.check().then(() => {
 });
 
 // Import the pages
-//import HomePage from './components/pages/HomePage.react';
+import HomePage from './components/pages/HomePage.react';
 import DoingsPage from './components/pages/DoingsPage.react';
 import ReadmePage from './components/pages/ReadmePage.react';
 import NotFoundPage from './components/pages/NotFound.react';
@@ -52,6 +52,9 @@ import App from './components/App.react';
 
 // Import the CSS file, which HtmlWebpackPlugin transfers to the build folder
 import '../css/main.css';
+
+// Import Bootstrap v4
+import 'bootstrap/scss/bootstrap-flex.scss';
 
 // Create the store with the redux-thunk middleware, which allows us
 // to do asynchronous things in the actions
@@ -73,8 +76,8 @@ ReactDOM.render(
   <Provider store={store}>
     <Router history={createHistory()}>
       <Route component={App}>
-        {/* <Route path="/" component={HomePage} /> */}
-        <Route path="/" component={DoingsPage}/>
+        <Route path="/" component={HomePage} />
+        <Route path="/doings" component={DoingsPage}/>
         <Route path="/readme" component={ReadmePage}/>
         <Route path="*" component={NotFoundPage}/>
       </Route>

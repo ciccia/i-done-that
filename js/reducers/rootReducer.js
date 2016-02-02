@@ -3,11 +3,10 @@
  * If we were to do this in store.js, reducers wouldn't be hot reloadable.
  */
 
-import homeReducer from './homeReducer';
 import doingsReducer from './doingsReducer';
 
 // Replace line below once you have several reducers with
 import { combineReducers } from 'redux';
-const rootReducer = combineReducers({homeReducer, doingsReducer});
+const rootReducer = combineReducers({doingsReducer});
 
 export default rootReducer;

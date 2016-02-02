@@ -1,3 +1,4 @@
 module.exports = require("./makewebpackconfig")({
-  prod: false
+  prod: false,
+  port: 3000
 });

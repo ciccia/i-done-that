@@ -8,35 +8,49 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
+import * as doingsActions from '../../actions/doingsActions';
+
+import DoingsFastForm from '../doings/DoingsFastForm'
+import DoingsList from '../doings/DoingsList'
+
 class HomePage extends Component {
   render() {
-    const dispatch = this.props.dispatch;
-    const { projectName, ownerName } = this.props.data;
+    const { doingsDone, doingsToDo, markDoneAsDone, markDoneAsDoing } = this.props;
     return (
       <div>
-        <h1>Hello World!</h1>
-        <h2>This is the demo for the <span className="home__text--red">{ projectName }</span> by <a href={'https://twitter.com/' + ownerName} >@{ ownerName }</a></h2>
-        <label className="home__label">Change to your project name:
-          <input className="home__input" type="text" onChange={(evt) => { dispatch(asyncChangeProjectName(evt.target.value)); }} defaultValue="React.js Boilerplate" value={projectName} />
-        </label>
-        <label className="home__label">Change to your name:
-          <input className="home__input" type="text" onChange={(evt) => { dispatch(asyncChangeOwnerName(evt.target.value)); }} defaultValue="mxstbr" value={ownerName} />
-        </label>
-        <Link className="btn" to="/readme">Setup</Link>
-        <Link className="btn" to="/doings">Doings</Link>
+
+        <div className="jumbotron">
+          <h1 className="display-5">Fast Doing</h1>
+          <p className="lead">Add here an iDoneThat</p>
+          <DoingsFastForm />
+
+          <p><a className="btn btn-lg btn-success" href="#" role="button">Sign up today</a></p>
+        </div>
+
+        <div className="row doing-today">
+          <div className="col-md-6 col-xs-12">
+            <h4>Doing</h4>
+            <DoingsList doings={doingsToDo} onToggleDoings={markDoneAsDone}/>
+          </div>
+          <div className="col-md-6 col-xs-12">
+            <h4>Done</h4>
+            <DoingsList doings={doingsDone} onToggleDoings={markDoneAsDoing}/>
+          </div>
+        </div>
+
       </div>
+
     );
   }
 }
 
-// REDUX STUFF
 
-// Which props do we want to inject, given the global state?
-function select(state) {
+function mapStateToProps(state) {
   return {
-    data: state.homeReducer
+    // TODO: Filtrare con data odierna. forse conviene usare reselect
+    doingsDone: state.doingsReducer.filter(doing => doing.get('done') === true),
+    doingsToDo: state.doingsReducer.filter(doing => doing.get('done') === false)
   };
 }
 
-// Wrap the component to inject dispatch and state into it
-export default connect(select)(HomePage);
+export default connect(mapStateToProps, doingsActions)(HomePage);

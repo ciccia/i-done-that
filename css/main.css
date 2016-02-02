@@ -2,17 +2,20 @@
 
 @charset 'UTF-8';
 
+/* Narrow Jumbotron */
+@import "narrow-jumbotron.css";
+
 /* 1. Vendors */
-@import 'vendor/*.css';
+/*@import 'vendor!*.css';*/
 
 /* 2. Configuration and helpers */
-@import 'utils/*.css';
+/*@import 'utils!*.css';*/
 
 /* 3. Base stuff */
-@import 'base/*.css';
+/*@import 'base!*.css';*/
 
 /* 4. Layout-related sections */
-@import 'layout/*.css';
+/*@import 'layout!*.css';*/
 
 /* 5. Components */
 @import 'components/*.css';
