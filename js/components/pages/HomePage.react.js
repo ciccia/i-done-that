@@ -3,7 +3,6 @@
  * This is the first thing users see of our App
  */
 
-import { asyncChangeProjectName, asyncChangeOwnerName } from '../../actions/AppActions';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
@@ -15,14 +14,14 @@ import DoingsList from '../doings/DoingsList'
 
 class HomePage extends Component {
   render() {
-    const { doingsDone, doingsToDo, markDoneAsDone, markDoneAsDoing } = this.props;
+    const { doingsDone, doingsToDo, addDone, markDoneAsDone, markDoneAsDoing } = this.props;
     return (
       <div>
 
         <div className="jumbotron">
           <h1 className="display-5">Fast Doing</h1>
           <p className="lead">Add here an iDoneThat</p>
-          <DoingsFastForm />
+          <DoingsFastForm onSubmit={addDone} />
 
           <p><a className="btn btn-lg btn-success" href="#" role="button">Sign up today</a></p>
         </div>

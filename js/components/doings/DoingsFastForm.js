@@ -9,7 +9,7 @@ class DoingsFastForm extends DoingsForm {
       <form onSubmit={e => this._handleSubmit(e)}>
         <input type="hidden" name="doneWhen" value={moment().format('YYYY-MM-DD')}/>
         <input type="text" autoFocus name="doneWhat"/>
-        <input type="hidden" name="doneIsDone" value={true}/>
+        <input type="hidden" name="doneIsDone" checked={true}/>
         <input type="submit"/>
       </form>
     );
