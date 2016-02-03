@@ -11,30 +11,33 @@ import { connect } from 'react-redux';
 import IndexLink from 'react-router/lib/IndexLink'
 import Link from 'react-router/lib/Link'
 
+import Navbar from 'react-materialize/lib/Navbar';
+import NavItem from 'react-materialize/lib/NavItem';
+
+//TODO: Link make a.active tag but should be li.active
 class App extends Component {
   render() {
     return (
-      <div className="wrapper container">
-        <div className="header clearfix">
-          <nav>
-            <ul className="nav nav-pills pull-xs-right">
-              <li className="nav-item active">
-                <IndexLink className="nav-link" to="/">Home</IndexLink>
-                {/*<a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>*/}
-              </li>
-              <li className="nav-item">
-                <Link className="nav-link" to="doings">Doings</Link>
-                {/*<a className="nav-link" href="#">Doings</a>*/}
-              </li>
+      <div>
+        <nav>
+          <div className="nav-wrapper container">
+            <IndexLink to="/" className="brand-logo">iDoneThat</IndexLink>
+            <ul id="nav-mobile" className="right">
+              <li><Link to="doings">Doings</Link></li>
             </ul>
-          </nav>
-          <h3 className="text-muted">IDoneThat</h3>
+          </div>
+        </nav>
+
+        <div className="container">
+          { this.props.children }
         </div>
 
-        { this.props.children }
-
-        <footer className="footer">
-          <p>&copy; Ciccia</p>
+        <footer className="page-footer orange">
+          <div className="footer-copyright">
+            <div className="container">
+              Made by <a className="orange-text text-lighten-3" href="#">Ciccia</a>
+            </div>
+          </div>
         </footer>
       </div>
     );

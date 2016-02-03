@@ -13,7 +13,7 @@
 - [x] Setup scaffolding
 - [x] Add basic Redux implementation for doings
 - [x] Add Doings page
-- [ ] Add a template (Bootstrap v4)
+- [X] Add a template (Materialize)
 - [ ] Add a calendar
 - [ ] Add filter and sort
 - [ ] Add a basic server with API

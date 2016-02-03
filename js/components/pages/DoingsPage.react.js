@@ -2,8 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
 import * as doingsActions from '../../actions/doingsActions';
-import DoingsList from '../doings/DoingsList';
-import DoingsForm from '../doings/DoingsForm';
+import DoingsFormFull from '../doings/DoingsForm/full';
 
 class DoingsPage extends Component {
 
@@ -18,9 +17,7 @@ class DoingsPage extends Component {
 
     return (
       <div>
-        <h1>Doings</h1>
-        <DoingsForm onSubmit={done => this.props.addDone(done)}/>
-        <DoingsList onToggleDoings={this._handleToggleDoings.bind(this)} doings={doings}/>
+        <DoingsFormFull onSubmit={done => this.props.addDone(done)}/>
       </div>
     );
   }

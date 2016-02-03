@@ -30,18 +30,7 @@ import { Provider } from 'react-redux';
 import { Router, Route } from 'react-router';
 import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
-import FontFaceObserver from 'fontfaceobserver';
 import createHistory from 'history/lib/createBrowserHistory';
-
-// Observer loading of Open Sans (to remove open sans, remove the <link> tag in the index.html file and this observer)
-const openSansObserver = new FontFaceObserver('Open Sans', {});
-
-// When Open Sans is loaded, add the js-open-sans-loaded class to the body
-openSansObserver.check().then(() => {
-  document.body.classList.add('js-open-sans-loaded');
-}, () => {
-  document.body.classList.remove('js-open-sans-loaded');
-});
 
 // Import the pages
 import HomePage from './components/pages/HomePage.react';
@@ -50,11 +39,12 @@ import ReadmePage from './components/pages/ReadmePage.react';
 import NotFoundPage from './components/pages/NotFound.react';
 import App from './components/App.react';
 
+// Materialize CSS
+import 'materialize-css/dist/css/materialize.css';
+import 'materialize-css/dist/js/materialize';
+
 // Import the CSS file, which HtmlWebpackPlugin transfers to the build folder
 import '../css/main.css';
-
-// Import Bootstrap v4
-import 'bootstrap/scss/bootstrap-flex.scss';
 
 // Create the store with the redux-thunk middleware, which allows us
 // to do asynchronous things in the actions
