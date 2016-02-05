@@ -14,12 +14,12 @@ class DoingsFormLead extends DoingsFormBase {
       <form onSubmit={e => this._handleSubmit(e)}>
 
         <div className="row">
-          <div className="input-field col s8">
+          <div className="input-field col s12">
             <input placeholder="What you done?" id="doneWhat" name="doneWhat"
                    type="text" className="validate" autoFocus required/>
 
           </div>
-          <div className="input-field col s4">
+          <div className="input-field col s12 center-align">
             <button className="btn-large waves-effect waves-light orange" type="submit" name="action">Submit
               <i className="material-icons right">send</i>
             </button>

@@ -5,13 +5,13 @@ class DoingsListLead extends DoingsListBase {
 
   render() {
     return (
-      <div className="row center">
+      <div>
         {this.props.doings.valueSeq().map((value) => (
-          <div className="col s12" key={value.get('id')}>
-            <h5 onClick={() => this.props.onToggleDoings(value.get('id'))}>
-              {value.get('description')}
-            </h5>
-          </div>
+          <p key={value.get('id')}
+             className="flow-text truncate"
+             onClick={() => this.props.onClick(value.get('id'))}>
+            {value.get('description')}
+          </p>
         ))}
       </div>
     );

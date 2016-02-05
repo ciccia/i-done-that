@@ -6,9 +6,9 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
-import moment from 'moment';
 
 import * as doingsActions from '../../actions/doingsActions';
+import { groupByStatusTodayDoingsSelector } from '../../selectors/doingsSelectors';
 
 import DoingsFormLead from '../doings/DoingsForm/lead';
 import DoingsListLead from '../doings/DoingsLists/lead';
@@ -22,24 +22,22 @@ class HomePage extends Component {
           <div className="container">
             <h2 className="header center orange-text">What have you done?</h2>
             <h5 className="header center light">This is the fastest way to insert a Done element</h5>
-            <div className="row center">
-              <DoingsFormLead onSubmit={addDone}/>
-            </div>
+            <DoingsFormLead onSubmit={addDone}/>
           </div>
         </div>
-
+        <div className="divider"></div>
         <div className="row">
-          <div className="col s6">
-            <h2 className="center light-blue-text">
-              <i style={{fontSize: 'inherit'}} className="material-icons">rowing</i>
+          <div className="col s12 hide-on-small-and-down m6 center-align">
+            <h2 className="center-align light-blue-text">
+              <i className="medium material-icons">rowing</i>
             </h2>
-            <DoingsListLead doings={doingsToDo} onToggleDoings={markDoneAsDone}/>
+            <DoingsListLead doings={doingsToDo} onClick={markDoneAsDone}/>
           </div>
-          <div className="col s6">
-            <h2 className="center light-blue-text">
-              <i style={{fontSize: 'inherit'}} className="material-icons">done</i>
+          <div className="col s12 m6 center-align">
+            <h2 className="light-blue-text">
+              <i className="medium material-icons">done</i>
             </h2>
-            <DoingsListLead doings={doingsDone} onToggleDoings={markDoneAsDoing}/>
+            <DoingsListLead doings={doingsDone} onClick={markDoneAsDoing}/>
           </div>
         </div>
 
@@ -49,17 +47,4 @@ class HomePage extends Component {
   }
 }
 
-
-function mapStateToProps(state) {
-  const today = moment();
-  const todayDoings = state.doingsReducer.filter(doing => {
-    return moment(doing.get('date')).isSame(today, 'day')
-  });
-  return {
-    // TODO: forse conviene usare reselect
-    doingsDone: todayDoings.filter(doing => doing.get('done') === true),
-    doingsToDo: todayDoings.filter(doing => doing.get('done') === false)
-  };
-}
-
-export default connect(mapStateToProps, doingsActions)(HomePage);
+export default connect(groupByStatusTodayDoingsSelector, doingsActions)(HomePage);
