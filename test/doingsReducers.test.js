@@ -34,4 +34,10 @@ describe('doings reducer', () => {
     expect(doingsReducer(list, actions.markDoneAsDone(testDone.id)))
       .toEqual(Immutable.List().push(testDone.set('done', true)));
   });
+
+  it('should handle the deleteDone action', () => {
+    const list = Immutable.List().push(testDone);
+    expect(doingsReducer(list, actions.deleteDone(testDone.id)))
+      .toEqual(Immutable.List().push(testDone).remove(0));
+  });
 });

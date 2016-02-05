@@ -28,7 +28,7 @@ class DoingsPage extends Component {
   }
 
   render() {
-    const { doings, addDone } = this.props;
+    const { doings, addDone, deleteDone } = this.props;
     const { selectedDate } = this.state;
 
     const filteredDoings = doings.filter(doing => {
@@ -36,24 +36,25 @@ class DoingsPage extends Component {
     });
 
     return (
-      <div>
-        <div className="section">
+      <div className="row">
+        <div className="col s12 l6">
           <DoingsFormFull
             date={selectedDate}
             onDateChange={(e) => {this._handleDateChange(e)}}
             onSubmit={addDone}/>
         </div>
-        <div className="divider"></div>
-        <h3 className="materialize-red-text text-lighten-2" style={{fontWeight: 300}}>
-          {this.state.selectedDate.toLocaleDateString()}
-        </h3>
-        <div className="section">
-          <DoingsListFull doings={filteredDoings} onClick={this._handleToggleDoings.bind(this)}/>
+        <div className="col s12 l6" style={{direction: 'rtl'}}>
+          <div className="divider hide-on-large-only"></div>
+          <h4 className="materialize-red-text text-lighten-2" style={{fontWeight: 300}}>
+            iDoneThat list
+          </h4>
+          <DoingsListFull doings={filteredDoings}
+                          onClick={this._handleToggleDoings.bind(this)}
+                          onDelete={deleteDone}/>
         </div>
       </div>
     );
   }
-
 }
 
 export default connect(doingsSelector, doingsActions)(DoingsPage);

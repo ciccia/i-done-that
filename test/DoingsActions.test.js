@@ -47,4 +47,17 @@ describe('DoingsActions', () => {
       expect(markDoneAsDone(uuid)).toEqual(expectedResult);
     });
   });
+
+  describe('deleteDone', () => {
+    it('should delete a doing item', () => {
+      const uuid = '0000000000000';
+
+      const expectedResult = {
+        type: MARK_DONE_AS_DONE,
+        payload: uuid
+      };
+
+      expect(markDoneAsDone(uuid)).toEqual(expectedResult);
+    });
+  });
 });

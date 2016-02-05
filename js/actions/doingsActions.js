@@ -20,3 +20,10 @@ export function markDoneAsDoing(id) {
     payload: id
   };
 }
+
+export function deleteDone(id) {
+  return {
+    type: doingsConstants.DELETE_DONE,
+    payload: id
+  }
+}

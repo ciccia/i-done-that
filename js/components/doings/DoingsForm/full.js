@@ -22,9 +22,9 @@ class DoingsFormFull extends DoingsFormBase {
     const {date, onDateChange} = this.props;
 
     return (
-      <form onSubmit={e => this._handleSubmit(e)}>
+      <form className="section" onSubmit={e => this._handleSubmit(e)}>
         <div className="row">
-          <div className="input-field col l2">
+          <div className="input-field col s12">
             <input ref="datepicker"
                    type="date"
                    className="datepicker"
@@ -34,16 +34,16 @@ class DoingsFormFull extends DoingsFormBase {
                    required
             />
           </div>
-          <div className="input-field col l6">
+          <div className="input-field col s12">
             <input id="what" name="what"
                    type="text" required/>
             <label htmlFor="what">What you done?</label>
           </div>
-          <div className="input-field col l2">
+          <div className="input-field col s4">
             <input type="checkbox" id="isDone" name="isDone" />
             <label htmlFor="isDone">isDone</label>
           </div>
-          <div className="input-field col l2 right-align">
+          <div className="input-field col s8 right-align">
             <button className="btn-large waves-effect waves-light orange" type="submit" name="action">Submit
               <i className="material-icons right">send</i>
             </button>

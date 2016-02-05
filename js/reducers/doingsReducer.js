@@ -16,6 +16,8 @@ function doingsReducer(state = initialState, action) {
       return state.updateIn([searchDoing(state, action.payload), 'done'], () => true);
     case doingsConstants.MARK_DONE_AS_DOING:
       return state.updateIn([searchDoing(state, action.payload), 'done'], () => false);
+    case doingsConstants.DELETE_DONE:
+      return state.removeIn([searchDoing(state, action.payload)]);
     default:
       return state;
   }

@@ -14,9 +14,12 @@
 - [x] Add basic Redux implementation for doings
 - [x] Add Doings page
 - [X] Add a template (Materialize)
+- [X] Add delete
+- [ ] Add modify
+- [X] Persist on local storage
+- [X] Add filter and sort (filter only date)
 - [ ] Add a calendar
-- [ ] Add filter and sort
-- [ ] Add a basic server with API
+- [ ] Add a basic server with API and replace local storage
 - [ ] Async actions to retrieve data
 - [ ] Demo on cloud (maybe Heroku)
 - [ ] Think more stuff...

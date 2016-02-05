@@ -27,15 +27,17 @@ import 'file?name=[name].[ext]!../.htaccess';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { Router, Route } from 'react-router';
-import { createStore, applyMiddleware } from 'redux';
+import { Router, Route, IndexRoute } from 'react-router';
+import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
-import createHistory from 'history/lib/createBrowserHistory';
+import persistState from 'redux-localstorage'
+//import createHistory from 'history/lib/createBrowserHistory';
+import createHistory from 'history/lib/createHashHistory';
+import Immutable from 'immutable';
 
 // Import the pages
 import HomePage from './components/pages/HomePage.react';
 import DoingsPage from './components/pages/DoingsPage.react';
-import ReadmePage from './components/pages/ReadmePage.react';
 import NotFoundPage from './components/pages/NotFound.react';
 import App from './components/App.react';
 
@@ -46,10 +48,20 @@ import 'materialize-css/dist/js/materialize';
 // Import the CSS file, which HtmlWebpackPlugin transfers to the build folder
 import '../css/main.css';
 
+const persistConfig = {
+  key: 'iDoneThat',
+  deserialize: (serializedData) => ({
+    doingsReducer: Immutable.fromJS(JSON.parse(serializedData).doingsReducer)
+  })
+};
+
 // Create the store with the redux-thunk middleware, which allows us
 // to do asynchronous things in the actions
 import rootReducer from './reducers/rootReducer';
-const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
+const createStoreWithMiddleware = compose(
+  applyMiddleware(thunk),
+  persistState(null, persistConfig)
+)(createStore);
 const store = createStoreWithMiddleware(rootReducer);
 
 // Make reducers hot reloadable, see http://stackoverflow.com/questions/34243684/make-redux-reducers-and-other-non-components-hot-loadable
@@ -65,10 +77,9 @@ if (module.hot) {
 ReactDOM.render(
   <Provider store={store}>
     <Router history={createHistory()}>
-      <Route component={App}>
-        <Route path="/" component={HomePage} />
-        <Route path="/doings" component={DoingsPage}/>
-        <Route path="/readme" component={ReadmePage}/>
+      <Route path="/" component={App}>
+        <IndexRoute component={HomePage}/>
+        <Route path="doings" component={DoingsPage}/>
         <Route path="*" component={NotFoundPage}/>
       </Route>
     </Router>
