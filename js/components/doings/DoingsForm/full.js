@@ -8,7 +8,7 @@ import moment from 'moment';
 class DoingsFormFull extends DoingsFormBase {
 
   componentDidMount() {
-    $('.datepicker').pickadate();
+    //$('.datepicker').pickadate();
   }
 
   _handleSubmit(e) {
