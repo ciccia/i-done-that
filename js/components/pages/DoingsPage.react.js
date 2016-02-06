@@ -28,7 +28,7 @@ class DoingsPage extends Component {
   }
 
   render() {
-    const { doings, addDone, deleteDone } = this.props;
+    const { doings, addDone, deleteDone, updateDone } = this.props;
     const { selectedDate } = this.state;
 
     const filteredDoings = doings.filter(doing => {
@@ -43,14 +43,15 @@ class DoingsPage extends Component {
             onDateChange={(e) => {this._handleDateChange(e)}}
             onSubmit={addDone}/>
         </div>
-        <div className="col s12 l6" style={{direction: 'rtl'}}>
+        <div className="col s12 l6 right-align">
           <div className="divider hide-on-large-only"></div>
           <h4 className="materialize-red-text text-lighten-2" style={{fontWeight: 300}}>
             iDoneThat list
           </h4>
           <DoingsListFull doings={filteredDoings}
                           onClick={this._handleToggleDoings.bind(this)}
-                          onDelete={deleteDone}/>
+                          onDelete={deleteDone}
+                          onUpdate={updateDone}/>
         </div>
       </div>
     );

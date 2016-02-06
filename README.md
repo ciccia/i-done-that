@@ -15,7 +15,7 @@
 - [x] Add Doings page
 - [X] Add a template (Materialize)
 - [X] Add delete
-- [ ] Add modify
+- [X] Add modify
 - [X] Persist on local storage
 - [X] Add filter and sort (filter only date)
 - [ ] Add a calendar

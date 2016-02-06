@@ -1,36 +1,86 @@
-import React, { PropTypes } from 'react';
+import React, { PropTypes, Component } from 'react';
 import DoingsListBase from './base';
+
+class DoingsItemFull extends Component {
+
+  constructor(props) {
+    super(props);
+    this.id = this.props.value.get('id');
+  }
+
+  _handleEditStart() {
+    const el = this.refs.description;
+    el.contentEditable = true;
+    el.focus();
+  }
+
+  _handleEditStop(e) {
+    const { onUpdate, value } = this.props;
+    e.target.contentEditable = false;
+    onUpdate(this.id, value.set('description', e.target.innerText));
+  }
+
+  shouldComponentUpdate(nextProps) {
+    return nextProps.value !== this.props.value;
+  }
+
+  render() {
+    const { value, onClick, onUpdate, onDelete } = this.props;
+    const id = value.get('id');
+
+    return (
+      <div className="row">
+        <div className="col s8"
+             ref="description"
+             onBlur={this._handleEditStop.bind(this)}>
+          {value.get('description')}
+        </div>
+        <div className="col s1">
+          <input type="checkbox" checked={value.get('done')}
+                 onChange={() => onClick(id)}
+                 id={`is-done-${id}`}
+          />
+          <label style={{paddingLeft: 0}}
+                 htmlFor={`is-done-${id}`}>
+          </label>
+        </div>
+        <div className="col s3">
+          <a onClick={this._handleEditStart.bind(this)}><i className="material-icons">edit</i></a>
+          <a onClick={() => onDelete(id)}><i className="material-icons">delete</i></a>
+        </div>
+
+      </div>
+    )
+  }
+
+}
 
 class DoingsListFull extends DoingsListBase {
 
+  shouldComponentUpdate(nextProps) {
+    return nextProps.doings !== this.props.doings;
+  }
+
   render() {
+    const {doings, ...actions} = this.props;
+
     return (
       <div className="section">
         {this.props.doings.valueSeq().map((value) => (
-          <div className="row" key={value.get('id')}>
-            <div className="col s8">
-              {value.get('description')}
-            </div>
-            <div className="col s1">
-              <input type="checkbox" checked={value.get('done')}
-                     onChange={() => this.props.onClick(value.get('id'))}
-                     id={`is-done-${value.get('id')}`}
-              />
-              <label style={{paddingLeft: 0}}
-                     htmlFor={`is-done-${value.get('id')}`}>
-              </label>
-            </div>
-            <div className="col s3">
-              <a><i className="material-icons">edit</i></a>
-              <a onClick={() => this.props.onDelete(value.get('id'))}><i className="material-icons">delete</i></a>
-            </div>
-
-          </div>
+          <DoingsItemFull key={value.get('id')} value={value} {...actions} />
         ))}
       </div>
     );
   }
 
 }
+
+DoingsListFull.propTypes = {
+  ...{
+    onUpdate: PropTypes.func.isRequired,
+    onDelete: PropTypes.func.isRequired
+  },
+  ...DoingsListBase.propTypes
+};
 
 export default DoingsListFull;

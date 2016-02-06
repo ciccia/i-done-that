@@ -1,7 +1,9 @@
 import expect from 'expect';
 import Immutable from 'immutable';
-import { addDone, markDoneAsDoing, markDoneAsDone } from '../js/actions/doingsActions';
-import { ADD_DONE, MARK_DONE_AS_DOING, MARK_DONE_AS_DONE } from '../js/constants/doingsConstants';
+import { addDone, markDoneAsDoing, markDoneAsDone, deleteDone, updateDone } from '../js/actions/doingsActions';
+import { ADD_DONE, MARK_DONE_AS_DOING, MARK_DONE_AS_DONE, DELETE_DONE, UPDATE_DONE } from '../js/constants/doingsConstants';
+
+import { testDone } from './doingsHelps';
 
 describe('DoingsActions', () => {
   describe('addDone', () => {
@@ -53,11 +55,28 @@ describe('DoingsActions', () => {
       const uuid = '0000000000000';
 
       const expectedResult = {
-        type: MARK_DONE_AS_DONE,
+        type: DELETE_DONE,
         payload: uuid
       };
 
-      expect(markDoneAsDone(uuid)).toEqual(expectedResult);
+      expect(deleteDone(uuid)).toEqual(expectedResult);
+    });
+  });
+
+  describe('updateDone', () => {
+    it('should update a doing item', () => {
+
+      const updatedDone = testDone.set('description', 'test');
+
+      const expectedResult = {
+        type: UPDATE_DONE,
+        payload: {
+          id: testDone.id,
+          updatedDone: updatedDone
+        }
+      };
+
+      expect(updateDone(testDone.id, updatedDone)).toEqual(expectedResult);
     });
   });
 });

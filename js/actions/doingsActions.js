@@ -27,3 +27,10 @@ export function deleteDone(id) {
     payload: id
   }
 }
+
+export function updateDone(id, updatedDone) {
+  return {
+    type: doingsConstants.UPDATE_DONE,
+    payload: {id, updatedDone}
+  }
+}

@@ -18,6 +18,10 @@ class DoingsFormFull extends DoingsFormBase {
     what.value = null;
   }
 
+  shouldComponentUpdate(nextProps) {
+    return nextProps.date !== this.props.date;
+  }
+
   render() {
     const {date, onDateChange} = this.props;
 
