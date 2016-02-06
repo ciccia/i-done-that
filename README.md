@@ -9,7 +9,7 @@
 [ci-img]: https://travis-ci.org/ciccia/i-done-that.svg?branch=master
 [ci]: https://travis-ci.org/ciccia/i-done-that
 
-## Todo
+## Todo Step One
 - [x] Setup scaffolding
 - [x] Add basic Redux implementation for doings
 - [x] Add Doings page
@@ -18,10 +18,12 @@
 - [X] Add modify
 - [X] Persist on local storage
 - [X] Add filter and sort (filter only date)
+- [X] Demo on git pages
+
+## Todo Step Two
 - [ ] Add a calendar
 - [ ] Add a basic server with API and replace local storage
 - [ ] Async actions to retrieve data
-- [ ] Demo on cloud (maybe Heroku)
 - [ ] Think more stuff...
 
 ###### Boilerplate

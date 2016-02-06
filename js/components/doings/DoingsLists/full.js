@@ -45,8 +45,8 @@ class DoingsItemFull extends Component {
           </label>
         </div>
         <div className="col s3">
-          <a onClick={this._handleEditStart.bind(this)}><i className="material-icons">edit</i></a>
-          <a onClick={() => onDelete(id)}><i className="material-icons">delete</i></a>
+          <a role="button" style={{cursor:' pointer'}} onClick={this._handleEditStart.bind(this)}><i className="material-icons">edit</i></a>
+          <a role="button" style={{cursor:' pointer'}} onClick={() => onDelete(id)}><i className="material-icons">delete</i></a>
         </div>
 
       </div>

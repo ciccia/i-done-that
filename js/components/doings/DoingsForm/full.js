@@ -8,7 +8,7 @@ import moment from 'moment';
 class DoingsFormFull extends DoingsFormBase {
 
   componentDidMount() {
-    //$('.datepicker').pickadate({});
+    $('.datepicker').pickadate();
   }
 
   _handleSubmit(e) {
@@ -16,6 +16,7 @@ class DoingsFormFull extends DoingsFormBase {
     let {what, when, isDone} = e.target;
     this.submit(what.value, isDone.checked, when.value);
     what.value = null;
+    what.focus();
   }
 
   shouldComponentUpdate(nextProps) {
@@ -29,8 +30,7 @@ class DoingsFormFull extends DoingsFormBase {
       <form className="section" onSubmit={e => this._handleSubmit(e)}>
         <div className="row">
           <div className="input-field col s12">
-            <input ref="datepicker"
-                   type="date"
+            <input type="date"
                    className="datepicker"
                    onChange={onDateChange}
                    value={moment(date).format('YYYY-MM-DD')}
@@ -40,7 +40,7 @@ class DoingsFormFull extends DoingsFormBase {
           </div>
           <div className="input-field col s12">
             <input id="what" name="what"
-                   type="text" required/>
+                   type="text" required autoFocus={true}/>
             <label htmlFor="what">What you done?</label>
           </div>
           <div className="input-field col s4">
